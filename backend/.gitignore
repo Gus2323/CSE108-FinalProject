@@ -1,0 +1,5 @@
+# Ignore node_modules and virtual environments
+backend/venv/
+__pycache__/
+.env
+.DS_Store
