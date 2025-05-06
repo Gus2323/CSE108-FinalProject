@@ -5,6 +5,7 @@ import Signup from "./Pages/Signup";
 import AdminDashboard from "./Pages/AdminDashboard";
 import StaffDashboard from "./Pages/StaffDashboard";
 import CustomerDashboard from "./Pages/CustomerDashboard";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 function App() {
   return (
@@ -12,9 +13,33 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/staff" element={<StaffDashboard />} />
-        <Route path="/customer" element={<CustomerDashboard />} />
+
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/staff"
+          element={
+            <ProtectedRoute allowedRoles={["staff", "admin"]}>
+              <StaffDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/customer"
+          element={
+            <ProtectedRoute allowedRoles={["customer", "staff", "admin"]}>
+              <CustomerDashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
