@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+
+.login-container {
+  height: 100vh; /* full viewport height */
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  border-radius: 1rem;
+}
