@@ -1,38 +1,48 @@
+import './App.css';
 import React, { useState } from 'react'
 
 function GuestList() {
 
-    const [guests, moveGuest] = useState(["John D"]);
+    const [guests, moveGuest] = useState([{ name: "John D", partySize: 2 }]);
 
-    //Add a guest to the guest list
+    //add a guest to the guest list
     function addGuestToList() {
-        let guestName = prompt("What's the guest name?", "First name Last Initial");
-        guests.push(guestName)
-        console.log("Updated Guest List:")
+        const guestName = prompt("What's the guest name?", "First name Last Initial");
+        const partySizePrompt = prompt("What's the party size?", "#");
+
+        const partySize = parseInt(partySizePrompt);
+
+        if (guestName && !isNaN(partySize)) {
+            moveGuest([...guests, { name: guestName.trim(), partySize }]);
+        }
+        //debugging
         for (let i = 0; i < guests.length; i++) {
             console.log(guests[i]);
-          }
+        }
     }
     //seat a guest's party
     function addGuestToTable() {
 
     }
-    //Remove a no-show
-    function removeGuestFromList() {
-
+    //remove a no-show
+    function removeGuestFromList(indexToRemove) {
+        moveGuest(guests.filter((_, index) => index !== indexToRemove));
+        //debugging
+        for (let i = 0; i < guests.length; i++) {
+            console.log(guests[i]);
+        }
     }
 
-    return (<div className="table-list">
-        <h1>Nacho Mama's</h1>
-        <h4>"Not your mama's cookin'"</h4>
+    return (<div className="guest-list">
         <h2>Guest List <button className="add-guest-button" onClick={addGuestToList}>Add Guest</button></h2>
         <div>
             <ol>
-                {guests.map((guest,index) => <li key={index}>
-                    <button className="delete-guest" onClick={removeGuestFromList}>Del</button>
-                    {/* <button class="dropbtn" className="seat-guest" onClick={addGuestToTable}>Seat</button> */}
-                    <span className="text"> {guest}</span>
-                </li>)}
+                {guests.map((guest, index) => (
+                    <li key={index}>
+                        <button className="delete-guest" onClick={() => removeGuestFromList(index)}>Del</button>
+                        <span className="text"> {guest.name} - Party of {guest.partySize}   </span>
+                    </li>
+                ))}
             </ol>
         </div>
     </div>
