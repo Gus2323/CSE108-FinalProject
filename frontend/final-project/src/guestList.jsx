@@ -34,7 +34,7 @@ function GuestList() {
     }
 
     return (<div className="guest-list">
-        <h2>Guest List <button className="add-guest-button" onClick={addGuestToList}>Add Guest</button></h2>
+        <h2>Guest List <button className="add-guest-button" onClick={addGuestToList}>➕</button></h2>
         <div>
             <ol>
                 {guests.map((guest, index) => (
