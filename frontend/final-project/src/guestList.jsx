@@ -22,8 +22,19 @@ function GuestList() {
     }
     //seat a guest's party
     function addGuestToTable(indexToAdd) {
+        let tableNumbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
+        let tableNum = prompt("Which table?", "Table #")
+        let tableInt = parseInt(tableNum)
+        if(tableNumbers.includes(tableInt) == false){
+            return alert("That table doesn't exist")
+        }
 
     }
+
+    function refreshGuestList(guest) {
+
+    }
+    
     //remove a no-show
     function removeGuestFromList(indexToRemove) {
         moveGuest(guests.filter((_, index) => index !== indexToRemove));
@@ -34,7 +45,9 @@ function GuestList() {
     }
 
     return (<div className="guest-list">
-        <h2>Guest List <button className="add-guest-button" onClick={addGuestToList}>➕</button></h2>
+        <h2>Guest List 
+            <button className="add-guest-button" onClick={addGuestToList}>➕</button>
+            <button className="refresh-guest-list" onClick={refreshGuestList}>🔄</button></h2>
         <div>
             <ol>
                 {guests.map((guest, index) => (
