@@ -61,18 +61,28 @@ body {
 
 .app-guest-list {
   background-color: aquamarine;
-  padding: 10px;
-  border: 1px solid #282c34;
+  border: 1px solid black;
   flex: 1;
   max-width: 30%;
   min-height: 485px;
 }
 
+.guest-list li {
+  list-style: none;
+  text-align: left;
+  margin-left: -10%;
+}
+
 .app-table-list {
   background-color: aquamarine;
   padding: 10px;
-  border: 1px solid #282c34;
+  border: 1px solid black;
   flex: 1;
   max-width: 30%;
 }
 
+.table-list li {
+  list-style: none;
+  text-align: left;
+  margin-left: 5%;
+}

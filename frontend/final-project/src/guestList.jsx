@@ -21,7 +21,7 @@ function GuestList() {
         }
     }
     //seat a guest's party
-    function addGuestToTable() {
+    function addGuestToTable(indexToAdd) {
 
     }
     //remove a no-show
@@ -39,8 +39,9 @@ function GuestList() {
             <ol>
                 {guests.map((guest, index) => (
                     <li key={index}>
-                        <button className="delete-guest" onClick={() => removeGuestFromList(index)}>Del</button>
-                        <span className="text"> {guest.name} - Party of {guest.partySize}   </span>
+                        <button className="seat-guest" onClick={() => addGuestToTable(index)}>Seat</button>
+                        <button className="delete-guest" onClick={() => removeGuestFromList(index)}>➖</button>
+                        <span className="text"> {guest.name} - ({guest.partySize})   </span>
                     </li>
                 ))}
             </ol>
