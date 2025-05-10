@@ -72,30 +72,30 @@ body {
   font-family: cursive;
 }
 
-.app-guest-list {
+/* .app-guest-list {
   background-color: aquamarine;
   border: 1px solid black;
   flex: 1;
   max-width: 30%;
   min-height: 485px;
-}
+} */
 
-.guest-list li {
+/* .guest-list li {
   list-style: none;
   text-align: left;
   margin-left: -10%;
-}
+} */
 
-.app-table-list {
+/* .app-table-list {
   background-color: aquamarine;
   padding: 10px;
   border: 1px solid black;
   flex: 1;
   max-width: 30%;
-}
+} */
 
-.table-list li {
+/* .table-list li {
   list-style: none;
   text-align: left;
   margin-left: 5%;
-}
+} */

@@ -6,12 +6,15 @@ import AdminDashboard from "./Pages/AdminDashboard";
 import StaffDashboard from "./Pages/StaffDashboard";
 import CustomerDashboard from "./Pages/CustomerDashboard";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import JoinQueue from "./Components/joinQueue";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<JoinQueue />} />
+
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
 
         <Route

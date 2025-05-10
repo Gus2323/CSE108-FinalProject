@@ -1,23 +1,36 @@
 import "../App.css";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import GuestList from '../Components/guestList.jsx'
 import TableList from '../Components/tableList.jsx'
+import Navbar from "../Components/Navbar"
+
 
 function App() {
   return (
-    <div className="nacho-mama">
-      <h1>Nacho Mama's</h1>
-      <h4>"Not your mama's cookin'"</h4>
-      <div>
-        <div className="app-guest-list">
-          <GuestList />
-        </div>
-        <div className="seating-map">
-        <img src="/example8.png" alt="alternatetext"></img>
-        </div>
-        <div className="app-table-list">
-          <TableList />
-        </div>
-      </div>
+    <div>
+      <Navbar />
+      <Container fluid>
+        <h1 className="text-center mb-4">Staff Dashboard</h1>
+
+        <Row>
+          <Col md={2}>
+            <div className="app-guest-list">
+              <GuestList />
+            </div>
+          </Col>
+          <Col md={8} className="text-center">
+            <div className="seating-map">
+              <img src="/example8.png" alt="alternatetext"></img>
+            </div>
+          </Col>
+          <Col md={2}>
+            <div className="app-table-list">
+              <TableList />
+            </div>
+          </Col>
+        </Row>
+      </Container>
+
     </div>
   );
 }

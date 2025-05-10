@@ -10,15 +10,16 @@ const CustomerDashboard = () => {
     <div className="customer-dashboard" style={{ minHeight: "100vh", backgroundColor: "#f9f9f9" }}>
       <Navbar />
       <Container className="pt-5">
-        <h2 className="text-center mb-4">Customer Dashboard</h2>
-        <Row className="mb-4">
+        <h2 className="text-center mb-4">You are number 484!</h2>
+          <h4 className="text-center mb-4">Please wait for a server to call your name.</h4>
+        {/* <Row className="mb-4">
           <Col md={6}>
             <QueueSection />
           </Col>
           <Col md={6}>
             <TableAssignment />
           </Col>
-        </Row>
+        </Row> */}
         <Row>
           <Col>
             <MenuSection />

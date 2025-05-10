@@ -6,8 +6,8 @@ const Navbar = () => {
     return (
         <BootstrapNavbar bg="dark" variant="dark" expand="lg" sticky="top">
             <Container>
-                <BootstrapNavbar.Brand as={Link} to="/">
-                    CSE 108 - Final Project
+                <BootstrapNavbar.Brand as={Link} to="/Login">
+                    Nacho Mama's
                 </BootstrapNavbar.Brand>
                 <BootstrapNavbar.Toggle aria-controls="navbar-nav" />
                 <BootstrapNavbar.Collapse id="navbar-nav">
@@ -18,8 +18,8 @@ const Navbar = () => {
                         {/* <Nav.Link as={Link} to="/menu">
                             Menu
                         </Nav.Link> */}
-                        <Nav.Link as={Link} to="/">
-                            Logout
+                        <Nav.Link as={Link} to="/Login">
+                            Login/Out
                         </Nav.Link>
                     </Nav>
                 </BootstrapNavbar.Collapse>
