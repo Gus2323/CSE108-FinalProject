@@ -38,9 +38,6 @@
   }
 }
 
-<<<<<<< Updated upstream
-=======
-
 .login-container {
   height: 100vh;
   /* full viewport height */
@@ -58,10 +55,10 @@
   background-color: #282a33;
 }
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+.staff-dash-background {
+  background-color: #282a33;
+}
+
 .nacho-mama {
   background-color: goldenrod;
   text-align: center;
@@ -79,15 +76,7 @@ body {
   background-color: aquamarine;
 }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-.h1 {
-=======
-.nacho-mama>h1 {
->>>>>>> Stashed changes
-=======
-.nacho-mama>h1 {
->>>>>>> Stashed changes
+.nacho-mama > h1 {
   text-align: center;
   font-family: cursive;
 }
