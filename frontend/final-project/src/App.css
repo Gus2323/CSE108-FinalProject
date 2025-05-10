@@ -32,18 +32,40 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
+<<<<<<< Updated upstream
+=======
+
+.login-container {
+  height: 100vh;
+  /* full viewport height */
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+.staff-dash-background {
+  background-color: #282a33;
+}
+
+>>>>>>> Stashed changes
 .nacho-mama {
   background-color: goldenrod;
   text-align: center;
   padding: 20px;
 }
 
-.nacho-mama > div {
+.nacho-mama>div {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -54,12 +76,16 @@ body {
   background-color: aquamarine;
 }
 
+<<<<<<< Updated upstream
 .h1 {
+=======
+.nacho-mama>h1 {
+>>>>>>> Stashed changes
   text-align: center;
   font-family: cursive;
 }
 
-.app-guest-list {
+/* .app-guest-list {
   background-color: aquamarine;
   border: 1px solid black;
   flex: 1;
@@ -85,4 +111,9 @@ body {
   list-style: none;
   text-align: left;
   margin-left: 5%;
+} */
+
+.staff-guest-list, .staff-table-list {
+  list-style-type: none;
+  text-align: left;
 }
