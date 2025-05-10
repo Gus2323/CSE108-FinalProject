@@ -33,12 +33,15 @@
     transform: rotate(0deg);
   }
 
+
   to {
     transform: rotate(360deg);
   }
 }
 
 .login-container {
+  height: 100vh;
+  /* full viewport height */
   height: 100vh;
   /* full viewport height */
   background: linear-gradient(to right, #6a11cb, #2575fc);
@@ -49,10 +52,6 @@
 
 .card {
   border-radius: 1rem;
-}
-
-.staff-dash-background {
-  background-color: #282a33;
 }
 
 .staff-dash-background {
@@ -76,7 +75,7 @@ body {
   background-color: aquamarine;
 }
 
-.nacho-mama > h1 {
+.nacho-mama>h1 {
   text-align: center;
   font-family: cursive;
 }
