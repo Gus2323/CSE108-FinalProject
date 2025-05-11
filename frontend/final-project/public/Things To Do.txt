@@ -1,0 +1,22 @@
+Necessary Functionality:
+-Pull menu items and prices from Menu table to display on customer page
+-Make changes to Menu item names and prices in the Menu table
+-Display guest names and party size to the Guest List element from Guests table
+-Remove/Add guests from/to the Guest List from the Guests table
+-Allow guests to be seated at employee-chosen table - Needs to save guest
+	data to the Tables table (Name or id)
+-Delete guest data from the Tables table - allows employee to "clear" a table 
+	for another guest
+-Add guest info to the Guests table (May be different for guest dash than staff dash)
+-Save guest "rewards" account info to the database (Either in the Users table or
+	a separate table altogether)
+-Refresh guest list on webpage (Will mostly be written in front-end once db is connected)
+-Remove/Add staff user accounts from Users table
+-Edit staff user account information (Will mostly be written in front-end once db is connected)
+-Add review capability for users - More than likely Front-end code
+
+
+Optional Functionality:
+Queueing - Do we want to include a number to display for the customer?
+Menu Specials - Could put a "Special of the day" that moves one of the menu items
+	to the top and lowers the price of that item by something like 10%
