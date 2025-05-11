@@ -4,6 +4,7 @@ import { Container, Form, Button, Alert, Card, Spinner } from "react-bootstrap";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
+import Navbar from "../Components/Navbar";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -41,48 +42,57 @@ const Login = () => {
   };
 
   return (
-    <Container
-      className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
-    >
-      <Card className="p-4 shadow-sm" style={{ width: "100%", maxWidth: "400px" }}>
-        <Card.Body>
-          <h2 className="text-center mb-4">Login</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleLogin}>
-            <Form.Group controlId="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                required
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </Form.Group>
+    <div
+      style={{
+        backgroundImage: "url('/hand-drawn-mexican-bar-pattern.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+      }}
+    >    <Navbar />
+      <Container
+        className="d-flex align-items-center justify-content-center"
+        style={{ minHeight: "90vh" }}
+      >
+        <Card className="p-4 shadow-sm" style={{ width: "100%", maxWidth: "400px" }}>
+          <Card.Body>
+            <h2 className="text-center mb-4">Login</h2>
+            {error && <Alert variant="danger">{error}</Alert>}
+            <Form onSubmit={handleLogin}>
+              <Form.Group controlId="email">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  required
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Form.Group>
 
-            <Form.Group controlId="password" className="mt-3">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                required
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Form.Group>
+              <Form.Group controlId="password" className="mt-3">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  required
+                  placeholder="Enter password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Form.Group>
 
-            <Button className="w-100 mt-4" type="submit" disabled={loading}>
-              {loading ? <Spinner animation="border" size="sm" /> : "Log In"}
-            </Button>
-            <p className="text-center mt-3">
-              Don’t have an account? <a href="/signup">Sign up</a>
-            </p>
+              <Button className="w-100 mt-4" type="submit" disabled={loading}>
+                {loading ? <Spinner animation="border" size="sm" /> : "Log In"}
+              </Button>
+              <p className="text-center mt-3">
+                Don’t have an account? <a href="/signup">Sign up</a>
+              </p>
 
-          </Form>
-        </Card.Body>
-      </Card>
-    </Container>
+            </Form>
+          </Card.Body>
+        </Card>
+      </Container>
+    </div>
   );
 };
 

@@ -17,7 +17,7 @@ const JoinQueue = () => {
             <Container
                 fluid
                 className="d-flex justify-content-center align-items-center"
-                style={{ height: "70vh" }} // fill most of screen vertically
+                style={{ height: "90vh" }} // fill most of screen vertically
             >
                 <Card style={{ width: "350px", textAlign: "center" }}>
                     <Card.Body>
@@ -25,10 +25,16 @@ const JoinQueue = () => {
                         <Card.Text>
                             <p>Please enter your First Name and Last Initial to join the queue:</p>
                             <input
-                                name="myInput"
+                                name="guest-name"
                                 className="form-control mb-3"
                                 style={{ textAlign: "center" }}
-                            />
+                            ></input>
+                            <p>And your party size:</p>
+                            <input
+                                name="party-size"
+                                className="form-control mb-3"
+                                style={{ textAlign: "center" }}
+                                ></input>
                             <Button className="enter-queue" onClick={addToQueue}>Enter Queue</Button>
                             <p> Want to Join our Rewards Program?{" "} </p>
                             <p><a href="/signup">Sign up Here</a></p>

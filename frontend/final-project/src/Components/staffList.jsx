@@ -8,6 +8,10 @@ function StaffList() {
         { firstName: "Carlos", lastName: "Lopez", Role: "Server" }, { firstName: "Gustavo", lastName: "Castaneda-Lagunas", Role: "Manager" },
         { firstName: "Roshan", lastName: "Manoranjan", Role: "Cook" }]);
 
+    function createUser() {
+
+    }
+
     function editUser() {
 
     }
@@ -20,7 +24,12 @@ function StaffList() {
     return (
         <Card>
             <Card.Body>
-                <Card.Title>Staff List</Card.Title>
+                <div className="d-flex justify-content-between align-items-center">
+                    <Card.Title className="mb-0">Staff List</Card.Title>
+                    <div>
+                        <button onClick={createUser}>➕</button>{' '}
+                    </div>
+                </div>
                 <Card.Text>
                     <ul className="list-unstyled">
                         {users.map((user, index) => (

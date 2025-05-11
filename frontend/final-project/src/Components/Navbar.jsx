@@ -6,7 +6,7 @@ const Navbar = () => {
     return (
         <BootstrapNavbar bg="dark" variant="dark" expand="lg" sticky="top">
             <Container>
-                <BootstrapNavbar.Brand as={Link} to="/Login">
+                <BootstrapNavbar.Brand as={Link} to="/">
                     Nacho Mama's
                 </BootstrapNavbar.Brand>
                 <BootstrapNavbar.Toggle aria-controls="navbar-nav" />
