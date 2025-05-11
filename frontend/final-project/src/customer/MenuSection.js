@@ -33,7 +33,7 @@ const MenuSection = () => {
               <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>
-                  ${item.discountedPrice ?? item.price}
+                  ${item.isSpecial ? item.discountedPrice : item.price}
                 </Card.Text>
               </Card.Body>
             </Card>
