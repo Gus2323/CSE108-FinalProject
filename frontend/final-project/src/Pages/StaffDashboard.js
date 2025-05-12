@@ -23,17 +23,17 @@ function App() {
           -1px 1px 0 black, 1px 1px 0 black`
     }}>Serving Dashboard</h1>
         <Row>
-          <Col md={2}>
+          <Col md={3}>
             <div className="app-guest-list">
               <GuestList />
             </div>
           </Col>
-          <Col md={8} className="text-center">
+          <Col md={6} className="text-center">
             <div className="seating-map">
-              <img src="/example8.png" alt="alternatetext"></img>
+              <img src="/example8.png" alt="alternatetext" className="img-fluid"></img>
             </div>
           </Col>
-          <Col md={2}>
+          <Col md={3}>
             <div className="app-table-list">
               <TableList />
             </div>

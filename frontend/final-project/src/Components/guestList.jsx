@@ -1,35 +1,93 @@
 import "../App.css";
-import React, { useState } from 'react'
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { db } from "../firebase";
+import { collection, getDocs, addDoc, deleteDoc, doc, setDoc } from "firebase/firestore";
+import { Container, Row, Col, Card, Button, ListGroup } from "react-bootstrap";
 
 function GuestList() {
 
     const [guests, moveGuest] = useState([{ name: "John D", partySize: 2 }]);
 
+
+    // Fetch guest list from Firestore
+    useEffect(() => {
+        const fetchGuests = async () => {
+            const querySnapshot = await getDocs(collection(db, "guests"));
+            const guestsData = querySnapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            moveGuest(guestsData);
+        };
+
+        fetchGuests();
+    }, []);
+
     //add a guest to the guest list
-    function addGuestToList() {
+    async function addGuestToList() {
         const guestName = prompt("What's the guest name?", "First name Last Initial");
         const partySizePrompt = prompt("What's the party size?", "#");
 
         const partySize = parseInt(partySizePrompt);
 
         if (guestName && !isNaN(partySize)) {
-            moveGuest([...guests, { name: guestName.trim(), partySize }]);
+            try {
+                await addDoc(collection(db, "guests"), {
+                    name: guestName.trim(),
+                    partySize,
+                    status: "waiting",
+                    createdAt: new Date()
+                });
+
+                // Refresh
+                const updated = await getDocs(collection(db, "guests"));
+                moveGuest(updated.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+            } catch (error) {
+                console.error("Error adding guest:", error);
+            }
         }
-        //debugging
-        for (let i = 0; i < guests.length; i++) {
-            console.log(guests[i]);
+            async function removeGuestFromList(indexToRemove) {
+        const guestToRemove = guests[indexToRemove];
+        if (!guestToRemove?.id) return;
+
+        try {
+            await deleteDoc(doc(db, "guests", guestToRemove.id));
+
+            // Refresh
+            const updated = await getDocs(collection(db, "guests"));
+            moveGuest(updated.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+        } catch (error) {
+            console.error("Error removing guest:", error);
         }
     }
+    }
     //seat a guest's party
-    function addGuestToTable(indexToAdd) {
-        let tableNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
-        let tableNum = prompt("Which table?", "Table #")
-        let tableInt = parseInt(tableNum)
-        if (tableNumbers.includes(tableInt) === false) {
-            return alert("That table doesn't exist")
-        }
+    async function addGuestToTable(indexToAdd) {
+        const guest = guests[indexToAdd];
+        const tableNum = prompt("Which table?", "Table #");
+        const tableInt = parseInt(tableNum);
 
+        if (isNaN(tableInt) || tableInt < 1 || tableInt > 18) {
+            return alert("That table doesn't exist");
+        }
+        try {
+            // Save to tables
+            await setDoc(doc(db, "tables", `table${tableInt}`), {
+                isOccupied: true,
+                guestId: guest.id,
+                assignedAt: new Date()
+            });
+
+            // Remove from guests
+            await deleteDoc(doc(db, "guests", guest.id));
+
+            // Refresh
+            const updated = await getDocs(collection(db, "guests"));
+            moveGuest(updated.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+
+        } catch (error) {
+            console.error("Error seating guest:", error);
+        }
     }
 
     function refreshGuestList(guest) {
@@ -47,7 +105,7 @@ function GuestList() {
 
     return (
         <div >
-            <Card style={{ backgroundColor:"darkgoldenrod" }}>
+            <Card style={{ backgroundColor: "darkgoldenrod" }}>
                 <Card.Body>
                     <div className="d-flex justify-content-between align-items-center">
                         <Card.Title className="mb-0">Guest List</Card.Title>
@@ -60,9 +118,11 @@ function GuestList() {
                         <ul className="list-unstyled">
                             {guests.map((guest, index) => (
                                 <li key={index} className="my-2 d-flex align-items-center">
-                                    <button onClick={() => addGuestToTable(index)}>Seat</button>{' '}
-                                    <button onClick={() => removeGuestFromList(index)}>➖</button>{' '}
-                                    <span className="ms-2">{guest.name} - ({guest.partySize})</span>
+                                    <button onClick={() => addGuestToTable(index)}>Seat</button>{" "}
+                                    <button onClick={() => removeGuestFromList(index)}>➖</button>{" "}
+                                    <span className="ms-2">
+                                        {guest.name} - ({guest.partySize})
+                                    </span>
                                 </li>
                             ))}
                         </ul>
