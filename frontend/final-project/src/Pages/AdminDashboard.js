@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Navbar from "../Components/Navbar";
 import QueueSection from "../customer/QueueSection";
 import TableAssignment from "../customer/TableAssignment";
-import MenuSection from "../customer/MenuSection";
+import MenuSection from "../Components/adminMenu.jsx";
 import StaffList from "../Components/staffList.jsx";
 import GuestList from '../Components/guestList.jsx'
 import TableList from '../Components/tableList.jsx'

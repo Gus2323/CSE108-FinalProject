@@ -7,6 +7,7 @@ import StaffDashboard from "./Pages/StaffDashboard";
 import CustomerDashboard from "./Pages/CustomerDashboard";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import JoinQueue from "./Components/joinQueue";
+import ThankYou from "./Pages/Thankyou";
 
 function App() {
   return (
@@ -40,6 +41,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["customer", "staff", "admin"]}>
               <CustomerDashboard />
+            </ProtectedRoute>
+          }
+        />
+          <Route
+          path="/Thankyou"
+          element={
+            <ProtectedRoute allowedRoles={["customer", "staff", "admin"]}>
+              <ThankYou />
             </ProtectedRoute>
           }
         />

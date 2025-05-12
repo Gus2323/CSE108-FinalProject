@@ -43,7 +43,7 @@ const InviteCodeManager = () => {
   };
 
   return (
-    <Card className="mb-4">
+    <Card className="mb-4" style={{ backgroundColor: "darkgoldenrod" }}>
       <Card.Body>
         <Card.Title>Invite Code Manager</Card.Title>
         <Form onSubmit={handleAddCode} className="mb-3">

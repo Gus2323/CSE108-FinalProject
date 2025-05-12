@@ -40,7 +40,7 @@ const AddMenuItemForm = () => {
     };
 
     return (
-        <Card className="mb-4">
+        <Card className="mb-4" style={{ backgroundColor: "darkgoldenrod" }}>
             <Card.Body>
                 <Card.Title>Add Menu Item</Card.Title>
                 <Form onSubmit={handleSubmit}>
