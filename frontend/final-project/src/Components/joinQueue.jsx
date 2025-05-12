@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Card, Button  } from "react-bootstrap";
+import { Container, Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 
@@ -12,14 +12,22 @@ const JoinQueue = () => {
         navigate("/customer");
     }
     return (
-        <div>
+        <div
+            style={{
+                backgroundImage: "url('/hand-drawn-mexican-bar-pattern_23-2150642680.jpg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                minHeight: "100vh",
+                width: "100%",
+            }}>
             <Navbar />
             <Container
                 fluid
                 className="d-flex justify-content-center align-items-center"
                 style={{ height: "90vh" }} // fill most of screen vertically
             >
-                <Card style={{ width: "350px", textAlign: "center" }}>
+                <Card style={{ width: "350px", textAlign: "center", backgroundColor:"darkgoldenrod" }}>
                     <Card.Body>
                         <Card.Title>Join the Queue</Card.Title>
                         <Card.Text>
@@ -34,7 +42,7 @@ const JoinQueue = () => {
                                 name="party-size"
                                 className="form-control mb-3"
                                 style={{ textAlign: "center" }}
-                                ></input>
+                            ></input>
                             <Button className="enter-queue" onClick={addToQueue}>Enter Queue</Button>
                             <p> Want to Join our Rewards Program?{" "} </p>
                             <p><a href="/signup">Sign up Here</a></p>

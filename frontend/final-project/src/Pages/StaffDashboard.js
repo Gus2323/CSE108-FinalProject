@@ -7,11 +7,21 @@ import Navbar from "../Components/Navbar"
 
 function App() {
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: "url('/hand-drawn-mexican-bar-pattern_23-2150642680.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh",
+        width: "100%",
+      }}>
       <Navbar />
       <Container fluid>
-        <h1 className="text-center mb-4">Staff Dashboard</h1>
-
+        <h1 className="text-center mb-4" style={{
+          color: "White", textShadow: `-1px -1px 0 black, 1px -1px 0 black,
+          -1px 1px 0 black, 1px 1px 0 black`
+    }}>Serving Dashboard</h1>
         <Row>
           <Col md={2}>
             <div className="app-guest-list">

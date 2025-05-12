@@ -22,7 +22,7 @@ function StaffList() {
 
 
     return (
-        <Card>
+        <Card style={{ backgroundColor:"darkgoldenrod" }}>
             <Card.Body>
                 <div className="d-flex justify-content-between align-items-center">
                     <Card.Title className="mb-0">Staff List</Card.Title>

@@ -3,7 +3,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { Container, Form, Button, Alert, Card } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import Navbar from "../Components/Navbar";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -35,9 +36,22 @@ const Signup = () => {
     }
   };
 
+  const submitForm = () =>{
+    navigate("/Thankyou")
+  }
   return (
+    <div
+      style={{
+    backgroundImage: "url('/hand-drawn-mexican-bar-pattern_23-2150642680.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    minHeight: "100vh",
+    width: "100%",
+  }}>
+    <Navbar />
     <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
-      <Card style={{ width: "100%", maxWidth: "400px" }} className="p-4 shadow-sm">
+      <Card style={{ width: "100%", maxWidth: "400px", backgroundColor: "darkgoldenrod"}} className="p-4 shadow-sm">
         <Card.Body>
           <h2 className="text-center mb-4">Sign Up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
@@ -62,20 +76,21 @@ const Signup = () => {
               />
             </Form.Group>
 
-            <Form.Group controlId="role" className="mt-3">
+            {/* <Form.Group controlId="role" className="mt-3">
               <Form.Label>Role</Form.Label>
               <Form.Select value={role} onChange={(e) => setRole(e.target.value)}>
                 <option value="customer">Customer</option>
                 <option value="staff">Staff</option>
                 <option value="admin">Admin</option>
               </Form.Select>
-            </Form.Group>
+            </Form.Group> */}
 
-            <Button type="submit" className="w-100 mt-4">Sign Up</Button>
+            <Button type="submit" className="w-100 mt-4" onClick={submitForm}>Sign Up</Button>
           </Form>
         </Card.Body>
       </Card>
     </Container>
+    </div>
   );
 };
 

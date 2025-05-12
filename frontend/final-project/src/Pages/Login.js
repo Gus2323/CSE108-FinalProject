@@ -5,9 +5,10 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import Navbar from "../Components/Navbar";
+import '../App.css'
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [user, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -18,7 +19,7 @@ const Login = () => {
     setLoading(true);
     setError("");
     try {
-      const userCred = await signInWithEmailAndPassword(auth, email, password);
+      const userCred = await signInWithEmailAndPassword(auth, user, password);
       const uid = userCred.user.uid;
 
       const userDoc = await getDoc(doc(db, "users", uid));
@@ -35,7 +36,7 @@ const Login = () => {
           navigate("/customer");
       }
     } catch (err) {
-      setError("Invalid email or password.");
+      setError("Invalid user or password.");
     } finally {
       setLoading(false);
     }
@@ -43,29 +44,31 @@ const Login = () => {
 
   return (
     <div
-      style={{
-        backgroundImage: "url('/hand-drawn-mexican-bar-pattern.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minHeight: "100vh",
-      }}
+  style={{
+    backgroundImage: "url('/hand-drawn-mexican-bar-pattern_23-2150642680.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    minHeight: "100vh",
+    width: "100%",
+  }}
     >    <Navbar />
       <Container
         className="d-flex align-items-center justify-content-center"
         style={{ minHeight: "90vh" }}
       >
-        <Card className="p-4 shadow-sm" style={{ width: "100%", maxWidth: "400px" }}>
+        <Card className="p-4 shadow-sm" style={{ backgroundColor:"darkgoldenrod" }}>
           <Card.Body>
             <h2 className="text-center mb-4">Login</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleLogin}>
-              <Form.Group controlId="email">
-                <Form.Label>Email</Form.Label>
+              <Form.Group controlId="">
+                <Form.Label>Username</Form.Label>
                 <Form.Control
-                  type="email"
+                  type="user"
                   required
-                  placeholder="Enter email"
-                  value={email}
+                  placeholder="Enter username"
+                  value={user}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Form.Group>
@@ -84,9 +87,9 @@ const Login = () => {
               <Button className="w-100 mt-4" type="submit" disabled={loading}>
                 {loading ? <Spinner animation="border" size="sm" /> : "Log In"}
               </Button>
-              <p className="text-center mt-3">
+              {/* <p className="text-center mt-3">
                 Don’t have an account? <a href="/signup">Sign up</a>
-              </p>
+              </p> */}
 
             </Form>
           </Card.Body>

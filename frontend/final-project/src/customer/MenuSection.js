@@ -24,23 +24,25 @@ const MenuSection = () => {
   }, []);
 
   return (
-    <div>
-      <h3 className="text-center mb-4">Menu</h3>
-      <Row>
-        {menuItems.map(item => (
-          <Col key={item.id} md={4} className="mb-4">
-            <Card className="h-100 shadow-sm">
-              <Card.Body>
-                <Card.Title>{item.name}</Card.Title>
-                <Card.Text>
-                  ${item.isSpecial ? item.discountedPrice : item.price}
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </div>
+    <Card style={{
+    backgroundImage: "url('/orange-felt.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    minHeight: "100vh",
+    width: "100%",
+  }}>
+      <Card.Body>
+        <Card.Title>Our Menu</Card.Title>
+        <ListGroup>
+          {menuItems.map((item, index) => (
+            <ListGroup.Item key={index}>
+              {item.name} <span className="float-end">{item.price}</span>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      </Card.Body>
+    </Card>
   );
 };
 

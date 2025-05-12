@@ -10,7 +10,15 @@ import TableList from '../Components/tableList.jsx'
 
 const AdminDashboard = () => {
     return (
-        <div>
+        <div
+          style={{
+    backgroundImage: "url('/hand-drawn-mexican-bar-pattern_23-2150642680.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    minHeight: "100vh",
+    width: "100%",
+  }}>
               <Navbar />
       <Container className="pt-5">
     <h1 className="text-center mb-4">Admin Dashboard</h1>

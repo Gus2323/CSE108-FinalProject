@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <BootstrapNavbar bg="dark" variant="dark" expand="lg" sticky="top">
+        <BootstrapNavbar variant="dark" expand="lg" sticky="top" style={{backgroundColor:"yellowgreen"}}>
             <Container>
-                <BootstrapNavbar.Brand as={Link} to="/">
+                <BootstrapNavbar.Brand as={Link} to="/" style={{color:"black"}}>
                     Nacho Mama's
                 </BootstrapNavbar.Brand>
                 <BootstrapNavbar.Toggle aria-controls="navbar-nav" />
@@ -18,8 +18,8 @@ const Navbar = () => {
                         {/* <Nav.Link as={Link} to="/menu">
                             Menu
                         </Nav.Link> */}
-                        <Nav.Link as={Link} to="/Login">
-                            Login/Out
+                        <Nav.Link as={Link} to="/Login" style={{color:"black"}}>
+                            Staff Login
                         </Nav.Link>
                     </Nav>
                 </BootstrapNavbar.Collapse>
