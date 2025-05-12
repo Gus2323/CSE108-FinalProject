@@ -12,8 +12,11 @@ function StaffList() {
 
     }
 
-    function editUser() {
-
+    function editStaffInfo(user) {
+        const newFirstName = prompt("Enter their first name:", user.firstname);
+        const newLastName = prompt("Enter their last name:", user.lastname);
+        const newPrice = prompt("Enter their role:", user.Role);
+        
     }
 
     function deleteUser() {
@@ -26,15 +29,15 @@ function StaffList() {
             <Card.Body>
                 <div className="d-flex justify-content-between align-items-center">
                     <Card.Title className="mb-0">Staff List</Card.Title>
-                    <div>
+                    {/* <div>
                         <button onClick={createUser}>➕</button>{' '}
-                    </div>
+                    </div> */}
                 </div>
                 <Card.Text>
                     <ul className="list-unstyled">
                         {users.map((user, index) => (
                             <li key={index}>
-                                <button className="edit-user">✏️</button>{' '}
+                                <button className="edit-user" onClick={() => editStaffInfo(user)}>✏️</button>{' '}
                                 <button className="delete-user">➖</button>
                                 <span> {user.firstName} {user.lastName} --- {user.Role}</span>
                             </li>

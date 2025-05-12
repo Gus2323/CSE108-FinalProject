@@ -46,7 +46,8 @@ function GuestList() {
                 console.error("Error adding guest:", error);
             }
         }
-        async function removeGuestFromList(indexToRemove) {
+    }
+    async function removeGuestFromList(indexToRemove) {
             const guestToRemove = guests[indexToRemove];
             if (!guestToRemove?.id) return;
 
@@ -60,7 +61,7 @@ function GuestList() {
                 console.error("Error removing guest:", error);
             }
         }
-    }
+        
     //seat a guest's party
     async function addGuestToTable(indexToAdd) {
         const guest = guests[indexToAdd];
@@ -71,20 +72,20 @@ function GuestList() {
             return alert("That table doesn't exist");
         }
         try {
-            // Save to tables
+            //save the guest data to tables
             await setDoc(doc(db, "tables", `table${tableInt}`), {
                 isOccupied: true,
                 guestId: guest.id,
                 assignedAt: new Date()
             });
 
-            // Remove from guests
+            //remove guests from the guest list by changing their status to seated
             await setDoc(doc(db, "guests", guest.id), {
                 ...guest,
                 status: "seated",
                 seatedAt: new Date()
             });
-            // Refresh
+            //refresh
             const updated = await getDocs(collection(db, "guests"));
             moveGuest(updated.docs.map(doc => ({ id: doc.id, ...doc.data() })));
 
@@ -107,20 +108,20 @@ function GuestList() {
     }
 
     //remove a no-show
-    async function removeGuestFromList(indexToRemove) {
-        const guestToRemove = guests[indexToRemove];
-        if (!guestToRemove?.id) return;
+    // async function removeGuestFromList(indexToRemove) {
+    //     const guestToRemove = guests[indexToRemove];
+    //     if (!guestToRemove?.id) return;
 
-        try {
-            //deletes guess from the list
-            await deleteDoc(doc(db, "guests", guestToRemove.id));
+    //     try {
+    //         //deletes guest from the list
+    //         await deleteDoc(doc(db, "guests", guestToRemove.id));
 
-            //refreshes the guest list
-            refreshGuestList();
-        } catch (error) {
-            console.error("Error removing guest:", error);
-        }
-    }
+    //         //refreshes the guest list
+    //         refreshGuestList();
+    //     } catch (error) {
+    //         console.error("Error removing guest:", error);
+    //     }
+    // }
 
 
     return (
