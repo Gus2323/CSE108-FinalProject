@@ -79,8 +79,11 @@ function GuestList() {
             });
 
             // Remove from guests
-            await deleteDoc(doc(db, "guests", guest.id));
-
+            await setDoc(doc(db, "guests", guest.id), {
+                ...guest,
+                status: "seated",
+                seatedAt: new Date()
+            });
             // Refresh
             const updated = await getDocs(collection(db, "guests"));
             moveGuest(updated.docs.map(doc => ({ id: doc.id, ...doc.data() })));
