@@ -18,21 +18,21 @@ function TableList() {
 
     useEffect(() => {
         const fetchTables = async () => {
-            const querySnapshot = await getDocs(collection(db, "tables"));
-            const tableData = [];
+            const newTableList = await getDocs(collection(db, "tables"));
+            const newTablesData = [];
 
             for (let i = 1; i <= 18; i++) {
-                const tableDoc = querySnapshot.docs.find(doc => doc.id === `table${i}`);
-                if (tableDoc) {
-                    const data = tableDoc.data();
-                    tableData.push({
+                const newTablesDoc = newTableList.docs.find(doc => doc.id === `table${i}`);
+                if (newTablesDoc) {
+                    const data = newTablesDoc.data();
+                    newTablesData.push({
                         table: i,
                         occupied: data.isOccupied,
                         guest: data.guestId ?? "Unknown Guest"
                     });
                 } else {
                     // If the table doc doesn't exist, mark it as available
-                    tableData.push({
+                    newTablesData.push({
                         table: i,
                         occupied: false,
                         guest: "Available"
@@ -40,7 +40,7 @@ function TableList() {
                 }
             }
 
-            setTables(tableData);
+            setTables(newTablesData);
         };
 
         fetchTables();
@@ -83,11 +83,46 @@ function TableList() {
         }
     }
 
+    async function refreshTableList() {
+    try {
+        const newTableList = await getDocs(collection(db, "tables"));
+        const newTablesData = [];
+
+        for (let i = 1; i <= 18; i++) {
+            const newTablesDoc = newTableList.docs.find(doc => doc.id === `table${i}`);
+            if (newTablesDoc) {
+                const data = newTablesDoc.data();
+                newTablesData.push({
+                    table: i,
+                    occupied: data.isOccupied,
+                    guest: data.guestId ?? "Unknown Guest"
+                });
+            } else {
+                newTablesData.push({
+                    table: i,
+                    occupied: false,
+                    guest: "Available"
+                });
+            }
+        }
+
+        setTables(newTablesData);
+    } catch (error) {
+        console.error("Error refreshing tables:", error);
+    }
+}
+    
+
     return (
         <div className="table-list">
             <Card style={{ backgroundColor:"darkgoldenrod" }}>
                 <Card.Body>
+                    <div className="d-flex justify-content-between align-items-center">
                     <Card.Title>Table List</Card.Title>
+                    <div>
+                        <button onClick={refreshTableList}>🔄</button>
+                    </div>
+                    </div>
                     <Card.Text>
                         <ul className="list-unstyled">
                             {tables.map((table, index) => (

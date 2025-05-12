@@ -20,3 +20,13 @@ Optional Functionality:
 Queueing - Do we want to include a number to display for the customer?
 Menu Specials - Could put a "Special of the day" that moves one of the menu items
 	to the top and lowers the price of that item by something like 10%
+
+
+	5/11:
+	Get tables to refresh automatically Table List
+		If not, add a refresh button and get it as well as the refresh staff list button to work - Table (and Guest) List component
+
+	Add Functionality for Remove guest button so that it saves changes to guest table in db - Guest List component
+	Add edit menu item function - Admin component
+	Get Menu to automatically refresh upon adding/editing an item - Menu component
+	Add Functionality to edit and remove staff accounts - Staff List Component

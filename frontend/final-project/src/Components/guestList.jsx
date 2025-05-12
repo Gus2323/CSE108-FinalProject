@@ -12,8 +12,8 @@ function GuestList() {
     // Fetch guest list from Firestore
     useEffect(() => {
         const fetchGuests = async () => {
-            const querySnapshot = await getDocs(collection(db, "guests"));
-            const guestsData = querySnapshot.docs.map(doc => ({
+            const newGuestsList = await getDocs(collection(db, "guests"));
+            const guestsData = newGuestsList.docs.map(doc => ({
                 id: doc.id,
                 ...doc.data()
             }));
@@ -46,20 +46,20 @@ function GuestList() {
                 console.error("Error adding guest:", error);
             }
         }
-            async function removeGuestFromList(indexToRemove) {
-        const guestToRemove = guests[indexToRemove];
-        if (!guestToRemove?.id) return;
+        async function removeGuestFromList(indexToRemove) {
+            const guestToRemove = guests[indexToRemove];
+            if (!guestToRemove?.id) return;
 
-        try {
-            await deleteDoc(doc(db, "guests", guestToRemove.id));
+            try {
+                await deleteDoc(doc(db, "guests", guestToRemove.id));
 
-            // Refresh
-            const updated = await getDocs(collection(db, "guests"));
-            moveGuest(updated.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-        } catch (error) {
-            console.error("Error removing guest:", error);
+                // Refresh
+                const updated = await getDocs(collection(db, "guests"));
+                moveGuest(updated.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+            } catch (error) {
+                console.error("Error removing guest:", error);
+            }
         }
-    }
     }
     //seat a guest's party
     async function addGuestToTable(indexToAdd) {
@@ -90,18 +90,35 @@ function GuestList() {
         }
     }
 
-    function refreshGuestList(guest) {
-
+    async function refreshGuestList() {
+        try {
+            const newGuestsList = await getDocs(collection(db, "guests"));
+            const guestsData = newGuestsList.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            moveGuest(guestsData);
+        } catch (error) {
+            console.error("Error refreshing guest list:", error);
+        }
     }
 
     //remove a no-show
-    function removeGuestFromList(indexToRemove) {
-        moveGuest(guests.filter((_, index) => index !== indexToRemove));
-        //debugging
-        for (let i = 0; i < guests.length; i++) {
-            console.log(guests[i]);
+    async function removeGuestFromList(indexToRemove) {
+        const guestToRemove = guests[indexToRemove];
+        if (!guestToRemove?.id) return;
+
+        try {
+            //deletes guess from the list
+            await deleteDoc(doc(db, "guests", guestToRemove.id));
+
+            //refreshes the guest list
+            refreshGuestList();
+        } catch (error) {
+            console.error("Error removing guest:", error);
         }
     }
+
 
     return (
         <div >
