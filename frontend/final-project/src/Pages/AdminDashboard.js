@@ -8,6 +8,7 @@ import StaffList from "../Components/staffList.jsx";
 import GuestList from '../Components/guestList.jsx'
 import TableList from '../Components/tableList.jsx'
 import AddMenuItemForm from "../Components/AddMenuItemForm";
+import InviteCodeManager from "../Components/InviteCodeManager";
 
 
 const AdminDashboard = () => {
@@ -25,12 +26,17 @@ const AdminDashboard = () => {
                         <AddMenuItemForm />
                     </Col>
                 </Row>
-                <Row>
+                <Row className="mb-4">
                     <Col>
                         <StaffList />
                     </Col>
                     <Col>
                         <GuestList />
+                    </Col>
+                </Row>
+                <Row className="mb-4">
+                    <Col md={6}>
+                        <InviteCodeManager />
                     </Col>
                 </Row>
 
